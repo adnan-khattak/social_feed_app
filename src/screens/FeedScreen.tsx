@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import NavigationBar from '../components/NavigationBar';
+import CreatePostScreen from './CreatePostScreen';
 
 // Define type for post
 type Post = {
@@ -26,11 +28,16 @@ const FeedScreen = () => {
   }, []);
 
   const handleLike = (postId: string) => {
-    setPosts((prevPosts: Post[]) =>
-      prevPosts.map((post: Post) =>
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
         post.id === postId ? { ...post, likes: post.likes + 1 } : post
       )
     );
+  };
+  const handleCreatePost = () => {
+    // Handle navigation to Create Post screen (replace with your navigation logic)
+    // navigation.navigate('CreatePostScreen'); // Assuming you have navigation
+    console.log('clicked')
   };
   
 
@@ -52,12 +59,16 @@ const FeedScreen = () => {
 
   return (
     <View style={styles.container}>
+      <NavigationBar />
       <FlatList
         data={posts}
         renderItem={renderPostItem}
         keyExtractor={(item) => item.id}
         style={styles.flatList}
       />
+      <TouchableOpacity onPress={handleCreatePost} style={styles.createPostButton}>
+        <Text style={styles.createPostButtonText}>Create Post</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -108,6 +119,17 @@ const styles = StyleSheet.create({
   likeButton: {
     color: 'blue',
     marginTop: 5,
+  },
+  createPostButton: {
+    position: 'absolute',
+    bottom: 10, // Adjust position as needed
+    right: 5, // Adjust position as needed
+    backgroundColor: '#000', // Choose a suitable color
+    padding: 10,
+    borderRadius: 5,
+  },
+  createPostButtonText: {
+    color: '#fff', // Choose a suitable text color
   },
 });
 

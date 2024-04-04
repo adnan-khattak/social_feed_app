@@ -1,70 +1,62 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-type IconProps = {
-    name: string;
-    size: number;
-    color: string;
-  };
-const Navbar = () => {
+
+const styles = StyleSheet.create({
+  navbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: '#f0f0f0', // Or your preferred background color
+    // flex: 1, // Make the navbar take up the full screen width
+    width: '100%'
+  },
+  logoAndTitle: {
+    flexDirection: 'row', // Arrange logo and title horizontally (optional)
+    alignItems: 'center', // Align logo and title vertically
+  },
+  text: {
+    fontSize: 18, // Adjust font size as needed
+    color: '#000', // Text color
+  },
+  title: {
+    fontWeight: 'bold', // Make title bold
+    marginLeft: 10, // Add margin between logo and title (optional)
+  },
+  icons: {
+    flexDirection: 'row', // Arrange icons horizontally
+  },
+  iconText: {
+    fontSize: 24, // Adjust icon size as needed
+    color: '#000', // Icon color
+  },
+});
+
+const NavigationBar = () => {
   return (
-    <View style={navbar.navbar}>
-      <View style={navbar.logoAndTitle}>
+    <View style={styles.navbar}>
+      <View style={styles.logoAndTitle}>
         {/* Logo */}
-        {/* <Text style={navbar.text}>Logo</Text> */}
-        
+        {/* <Text style={styles.text}>Logo</Text> */}
+
         {/* Title */}
-        <Text style={[navbar.text, navbar.title]}>ABC Universe</Text>
+        <Text style={[styles.text, styles.title]}>ABC Universe</Text>
       </View>
 
-      <View style={navbar.icons}>
+      <View style={styles.icons}>
         {/* Notification Icon */}
         <TouchableOpacity onPress={() => console.log('Notification pressed')}>
-          <Text style={navbar.iconText}>🔔</Text>
-
-        {/* <FontAwesomeIcon icon="fa-solid fa-coffee" fixedWidth /> */}
+          <Text style={styles.iconText}>🔔</Text>
         </TouchableOpacity>
-
 
         {/* Profile Icon */}
         <TouchableOpacity onPress={() => console.log('Profile pressed')}>
-          <Text style={navbar.iconText}>👤</Text>
+          <Text style={styles.iconText}>👤</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-export const navbar = StyleSheet.create({
-    navbar: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      padding: 16,
-      backgroundColor: "#A0AEC0" // This is a gray color, you might need to adjust it to match the exact tone of 'bg-gray-400'
-    },
-    logoAndTitle: {
-      flexDirection: "row",
-      alignItems: "center"
-    },
-    text: {
-      color: "white",
-      fontSize: 18,
-      fontWeight: "bold",
-    },
-    title: {
-      marginLeft: 8
-    },
-    icons: {
-      flexDirection: "row",
-      alignItems: "center"
-    },
-    iconText: {
-      color: "white",
-      fontSize: 20,
-      marginRight: 16
-    }
-  });
-  
 
-
-export default Navbar;
+export default NavigationBar;
